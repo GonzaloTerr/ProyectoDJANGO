@@ -1,0 +1,25 @@
+{% extends "layout-base.html" %}
+
+{% block head_title %}Listado de Cursos{% endblock %}
+
+{% block page_content %}
+
+    <h1>Listado de Cursos</h1>
+
+    {% for course in course %}
+        <article id="course.pk">
+            <h2>{{ course.title }}</h2>
+            {% if course.course_images %}
+            <picture>
+                <img src="{{ course.course_images.thumbnails.small.url }}" alt="">
+            </picture>
+            {% endif %}
+            <p>Fecha de publicadion: {{ course.create_at }}</p>
+            <div>
+                {{ course.content|truncatechars:100 }}
+            </div>
+            <p><a href="{% url "courses:course_detail" course.pk %}">Ver curso completo</a></p>
+        </article>
+    {% endfor %}
+   
+{% endblock %}

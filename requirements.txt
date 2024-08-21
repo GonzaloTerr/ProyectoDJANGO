@@ -1,0 +1,7 @@
+Django==5.1
+django-debug-toolbar==4.4.6
+django-extensions==3.2.3
+pillow==10.4.0
+typing_extensions==4.12.2
+django-thumbnails==0.8.0
+django-ckeditor==6.7.1
