@@ -171,3 +171,10 @@ THUMBNAILS = {
 }
 
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+
+#creacion de settings para enviar correos desde la pagina. Necesito un hosting y poner lo siguiente
+#EMAIL_HOST="smtp.dondominio.com" es un ejemplo
+#EMAIL_HOST_USER="miemailenhosting@mipagima.com"
+#EMAIL_HOST_PASSWORD="usuario112233"
+#EMAIL_USE_TLS=True
+#
