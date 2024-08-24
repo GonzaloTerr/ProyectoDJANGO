@@ -178,3 +178,7 @@ CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 #EMAIL_HOST_PASSWORD="usuario112233"
 #EMAIL_USE_TLS=True
 #
+
+LOGIN_URL="/login"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"

@@ -1,8 +1,13 @@
 from django.shortcuts import render
 from courses.models import Course
 from blog.models import Post
-from .form import ContactForm
+from .form import ContactForm, LoginForm
 from .models import Contact
+from django.contrib.auth import authenticate, login
+from django.shortcuts import redirect
+from django.contrib.auth import logout
+from django.urls import reverse
+
 #from django.core.mail import send_mail, Esto es para enviar emails
 
 # Create your views here.
@@ -16,8 +21,30 @@ def home(request):
 def about_us(request):
     return render(request,"core/about_us.html")
 
-def login(request):
-    return render(request,"core/login.html")
+def login_view(request):
+    if request.POST:
+        form=LoginForm(request.POST)
+        if form.is_valid():
+            username=form.cleaned_data["username"]
+            password=form.cleaned_data["password"]
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect(reverse("core:home"))
+            else:
+                context={"form":form, "error":True, "error_message":"Usuario no valido"}
+                return render(request,"core/login.html",context)
+        else:
+            context={"form":form, "error":True}
+            return render(request,"core/login.html",context)
+    else:
+        form=LoginForm()
+        context={"form":form}
+        return render(request,"core/login.html",context)
+
+def logout_view(request):
+    logout(request)
+    return redirect(reverse("core:home"))
 
 def register(request):
     return render(request,"core/register.html")
